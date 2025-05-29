@@ -21,7 +21,7 @@ local default_opts = {
 		},
 	},
 	sections = {
-		wezbar_a = { "mode" },
+		wezbar_a = { "mode", { Attribute = { Intensity = "Bold" } } },
 		wezbar_b = { "workspace" },
 		wezbar_c = { "hostname" },
 		tab_active = {
@@ -59,22 +59,30 @@ local function get_colors(theme)
 		normal_mode = {
 			a = { fg = background, bg = colors.ansi[5] },
 			b = { fg = colors.ansi[5], bg = surface },
-			c = { fg = colors.foreground, bg = background },
+			c = { fg = colors.ansi[5], bg = surface },
+		},
+		leader_mode = {
+			a = { fg = background, bg = colors.ansi[2] },
+			b = { fg = colors.ansi[5], bg = surface },
+			c = { fg = colors.ansi[5], bg = surface },
 		},
 		copy_mode = {
-			a = { fg = background, bg = colors.ansi[4] },
-			b = { fg = colors.ansi[4], bg = surface },
-			c = { fg = colors.foreground, bg = background },
+			a = { fg = background, bg = colors.ansi[6] },
+			b = { fg = colors.ansi[5], bg = surface },
+			c = { fg = colors.ansi[5], bg = surface },
 		},
 		search_mode = {
-			a = { fg = background, bg = colors.ansi[3] },
-			b = { fg = colors.ansi[3], bg = surface },
-			c = { fg = colors.foreground, bg = background },
+			a = { fg = background, bg = colors.ansi[4] },
+			b = { fg = colors.ansi[5], bg = surface },
+			c = { fg = colors.ansi[5], bg = surface },
 		},
 		tab = {
-			active = { fg = colors.ansi[5], bg = surface },
-			inactive = { fg = colors.foreground, bg = background },
-			inactive_hover = { fg = colors.ansi[6], bg = surface },
+			active = { fg = colors.tab_bar.active_tab.fg_color, bg = colors.tab_bar.active_tab.bg_color },
+			inactive = { fg = colors.tab_bar.inactive_tab.fg_color, bg = colors.tab_bar.inactive_tab.bg_color },
+			inactive_hover = {
+				fg = colors.tab_bar.inactive_tab_hover.fg_color,
+				bg = colors.tab_bar.inactive_tab_hover.bg_color,
+			},
 		},
 		colors = colors,
 	}
