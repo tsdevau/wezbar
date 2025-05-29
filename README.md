@@ -1,10 +1,10 @@
-# Wezterm Custom Tab Bar (forked from tabline.wez)
+# Wezterm Custom Tab Bar (forked from [tabline.wez](https://github.com/michaelbrusegard/tabline.wez))
 
 A versatile and easy to use tab-bar written in Lua.
 
-`tabline.wez` requires the [WezTerm](https://wezfurlong.org/wezterm/index.html) terminal emulator.
+`weztab` requires the [WezTerm](https://wezfurlong.org/wezterm/index.html) terminal emulator.
 
-Tabline was greatly inspired by [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim/tree/master), a statusline plugin for [Neovim](https://neovim.io), and tries to use the same configuration format.
+Wezbar was greatly inspired by [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim/tree/master), a statusline plugin for [Neovim](https://neovim.io), and tries to use the same configuration format.
 
 ## Contributing
 
@@ -15,37 +15,37 @@ Feel free to create an issue/PR if you want to see anything else implemented, or
 Here is a preview of what the tab-bar can look like.
 
 <p>
-  <img width="1656" alt="tabline 1" src="https://github.com/user-attachments/assets/bc3a2dc3-fa95-4386-a2b2-6b593dc4cef8">
-  <img width="1656" alt="tabline 2" src="https://github.com/user-attachments/assets/6c72b8b0-7751-4972-950e-ee1e3de1a39b">
-  <img width="1656" alt="tabline 3" src="https://github.com/user-attachments/assets/cd61edca-8c50-477b-a14a-84a89d369600">
-  <img width="1656" alt="tabline 4" src="https://github.com/user-attachments/assets/38b194ec-33d9-4955-af08-c70c25b3bcf0">
-  <img width="1656" alt="tabline 5" src="https://github.com/user-attachments/assets/ff216ab2-8a60-494d-9b11-9295212143df">
+  <img width="1656" alt="wezbar 1" src="https://github.com/user-attachments/assets/bc3a2dc3-fa95-4386-a2b2-6b593dc4cef8">
+  <img width="1656" alt="wezbar 2" src="https://github.com/user-attachments/assets/6c72b8b0-7751-4972-950e-ee1e3de1a39b">
+  <img width="1656" alt="wezbar 3" src="https://github.com/user-attachments/assets/cd61edca-8c50-477b-a14a-84a89d369600">
+  <img width="1656" alt="wezbar 4" src="https://github.com/user-attachments/assets/38b194ec-33d9-4955-af08-c70c25b3bcf0">
+  <img width="1656" alt="wezbar 5" src="https://github.com/user-attachments/assets/ff216ab2-8a60-494d-9b11-9295212143df">
 </p>
 
 Some more examples, but very zoomed in.
 
 <p>
-  <img width="1680" alt="tabline 1 big" src="https://github.com/user-attachments/assets/2b48be12-7875-4282-aeb4-c24b0ed2fc1c">
-  <img width="1680" alt="tabline 2 big" src="https://github.com/user-attachments/assets/b3ec5b88-d940-4ff0-9612-0f74d8b003a3">
-  <img width="1680" alt="tabline 3 big" src="https://github.com/user-attachments/assets/00e39a55-5628-4926-9d42-9eff1e00e75c">
-  <img width="1680" alt="tabline 4 big" src="https://github.com/user-attachments/assets/a2d84536-345c-4fce-9b50-d55b2768ae90">
+  <img width="1680" alt="wezbar 1 big" src="https://github.com/user-attachments/assets/2b48be12-7875-4282-aeb4-c24b0ed2fc1c">
+  <img width="1680" alt="wezbar 2 big" src="https://github.com/user-attachments/assets/b3ec5b88-d940-4ff0-9612-0f74d8b003a3">
+  <img width="1680" alt="wezbar 3 big" src="https://github.com/user-attachments/assets/00e39a55-5628-4926-9d42-9eff1e00e75c">
+  <img width="1680" alt="wezbar 4 big" src="https://github.com/user-attachments/assets/a2d84536-345c-4fce-9b50-d55b2768ae90">
 </p>
 
-`tabline.wez` supports all the same themes as WezTerm. You can find the list of themes [here](https://wezfurlong.org/wezterm/colorschemes/index.html).
+`weztab` supports all the same themes as WezTerm. You can find the list of themes [here](https://wezfurlong.org/wezterm/colorschemes/index.html).
 
 ## Installation
 
 ### WezTerm Plugin API
 
 ```lua
-local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+local wezbar = wezterm.plugin.require("https://github.com/tsdevau/wezbar")
 ```
 
 You'll also need to have a patched font if you want icons.
 
 ## Usage and customization
 
-Tabline has sections as shown below just like lualine with the addition of `tabs` in the middle.
+Wezbar has sections as shown below just like lualine with the addition of `tabs` in the middle.
 
 ```text
 +-------------------------------------------------+
@@ -55,12 +55,12 @@ Tabline has sections as shown below just like lualine with the addition of `tabs
 
 Each sections holds its components e.g. Current active keytable (mode).
 
-### Configuring tabline in wezterm.lua
+### Configuring wezbar in wezterm.lua
 
 #### Default configuration
 
 ```lua
-tabline.setup({
+wezbar.setup({
   options = {
     icons_enabled = true,
     theme = 'Catppuccin Mocha',
@@ -80,9 +80,9 @@ tabline.setup({
     },
   },
   sections = {
-    tabline_a = { 'mode' },
-    tabline_b = { 'workspace' },
-    tabline_c = { ' ' },
+    wezbar_a = { 'mode' },
+    wezbar_b = { 'workspace' },
+    wezbar_c = { ' ' },
     tab_active = {
       'index',
       { 'parent', padding = 0 },
@@ -91,39 +91,39 @@ tabline.setup({
       { 'zoomed', padding = 0 },
     },
     tab_inactive = { 'index', { 'process', padding = { left = 0, right = 1 } } },
-    tabline_x = { 'ram', 'cpu' },
-    tabline_y = { 'datetime', 'battery' },
-    tabline_z = { 'domain' },
+    wezbar_x = { 'ram', 'cpu' },
+    wezbar_y = { 'datetime', 'battery' },
+    wezbar_z = { 'domain' },
   },
   extensions = {},
 })
 ```
 
-If you want to get your current tabline config, you can
+If you want to get your current wezbar config, you can
 do so with:
 
 ```lua
-tabline.get_config()
+wezbar.get_config()
 
 ```
 
 #### WezTerm configuration
 
-Tabline requires that some options are applied to the WezTerm [Config](https://wezfurlong.org/wezterm/config/lua/config/index.html) struct. For example the retro tab-bar must be enabled. Tabline provides a function to apply some recommended options to the config. If you already set these options in your `wezterm.lua` you do not need this function. This needs to be called after `wezterm.setup()`.
+Wezbar requires that some options are applied to the WezTerm [Config](https://wezfurlong.org/wezterm/config/lua/config/index.html) struct. For example the retro tab-bar must be enabled. Wezbar provides a function to apply some recommended options to the config. If you already set these options in your `wezterm.lua` you do not need this function. This needs to be called after `wezterm.setup()`.
 
 ```lua
-tabline.apply_to_config(config)
+wezbar.apply_to_config(config)
 ```
 
 > [!CAUTION]
-> This function has nothing to do with the tabline config passed into setup and retrieved with `tabline.get_config()`. It only applies some recommended options to the WezTerm config. More info [here](https://github.com/michaelbrusegard/tabline.wez/discussions/3)
+> This function has nothing to do with the wezbar config passed into setup and retrieved with `wezbar.get_config()`. It only applies some recommended options to the WezTerm config. More info [here](https://github.com/tsdevau/wezbar)
 
 ---
 
-### Starting tabline
+### Starting wezbar
 
 ```lua
-tabline.setup()
+wezbar.setup()
 ```
 
 ---
@@ -134,7 +134,7 @@ tabline.setup()
 options = { theme = 'GruvboxDark' }
 ```
 
-All available themes are found [here](https://wezfurlong.org/wezterm/colorschemes/index.html). Tabline uses [get_builtin_schemes()](https://wezfurlong.org/wezterm/config/lua/wezterm.color/get_builtin_schemes.html) under the hood, and not all the color schemes in WezTerm supplies the colors that some of the [extensions](#extensions) for Tabline require. To get around this it is also possible to input your own colors from the WezTerm config or a completely custom colors scheme object.
+All available themes are found [here](https://wezfurlong.org/wezterm/colorschemes/index.html). Wezbar uses [get_builtin_schemes()](https://wezfurlong.org/wezterm/config/lua/wezterm.color/get_builtin_schemes.html) under the hood, and not all the color schemes in WezTerm supplies the colors that some of the [extensions](#extensions) for Wezbar require. To get around this it is also possible to input your own colors from the WezTerm config or a completely custom colors scheme object.
 
 ```lua
 options = { theme = config.colors } -- This is the WezTerm config colors object
@@ -145,8 +145,8 @@ options = { theme = config.colors } -- This is the WezTerm config colors object
 To modify a theme, you can use the `theme_overrides` option.
 
 ```lua
--- Change the background of tabline_c section for normal mode
-tabline.setup({
+-- Change the background of wezbar_c section for normal mode
+wezbar.setup({
   options = {
     theme_overrides = {
       normal_mode = {
@@ -157,10 +157,10 @@ tabline.setup({
 })
 ```
 
-This is also where you would specify the colors for a new [Key Table](https://wezfurlong.org/wezterm/config/key-tables.html) (mode). Tabline expects each key table to end with `_mode`.
+This is also where you would specify the colors for a new [Key Table](https://wezfurlong.org/wezterm/config/key-tables.html) (mode). Wezbar expects each key table to end with `_mode`.
 
 ```lua
-tabline.setup({
+wezbar.setup({
   options = {
     theme_overrides = {
     -- Default colors from Catppuccin Mocha
@@ -201,7 +201,7 @@ tabline.setup({
 If you want to get the current theme and its colors, you can do so with:
 
 ```lua
-tabline.get_theme()
+wezbar.get_theme()
 ```
 
 You will get an object like the `theme_overrides` object above, but with the addition of a colors property (the colors property is the colors object from the WezTerm config with every color found there).
@@ -214,15 +214,15 @@ You will get an object like the `theme_overrides` object above, but with the add
 You can change the theme after setup using:
 
 ```lua
-tabline.set_theme('GruvboxDark') -- Just change theme
+wezbar.set_theme('GruvboxDark') -- Just change theme
 -- or
-tabline.set_theme('GruvboxDark', {  -- Change theme with overrides
+wezbar.set_theme('GruvboxDark', {  -- Change theme with overrides
   normal_mode = {
     a = { fg = '#000000', bg = '#ffffff' }
   }
 }) 
 -- or
-tabline.set_theme({ -- Just apply new overrides to current theme
+wezbar.set_theme({ -- Just apply new overrides to current theme
   normal_mode = {
     a = { fg = '#000000', bg = '#ffffff' }
   }
@@ -239,7 +239,7 @@ You can disable overwriting tabs by setting `tabs_enabled` to `false` in the opt
 
 ### Separators
 
-tabline defines three kinds of separators:
+wezbar defines three kinds of separators:
 
 - `section_separators` - separators between sections
 - `component_separators` - separators between the different components in sections
@@ -277,15 +277,15 @@ options = {
 
 ---
 
-### Changing components in tabline sections
+### Changing components in wezbar sections
 
 ```lua
-sections = { tabline_a = { 'mode' } }
+sections = { wezbar_a = { 'mode' } }
 ```
 
 #### Available components
 
-Tabline separates components into ones available for the tabline components (`tabline_a`, `tabline_b`, etc...), which are grouped under Window since they have access to the [Window](https://wezfurlong.org/wezterm/config/lua/window/index.html) object.
+Wezbar separates components into ones available for the wezbar components (`wezbar_a`, `wezbar_b`, etc...), which are grouped under Window since they have access to the [Window](https://wezfurlong.org/wezterm/config/lua/window/index.html) object.
 
 And the `tab_active` and `tab_inactive` components which are grouped under Tab and have access to [TabInformation](https://wezfurlong.org/wezterm/config/lua/TabInformation.html).
 
@@ -310,31 +310,31 @@ And the `tab_active` and `tab_inactive` components which are grouped under Tab a
 
 #### Custom components
 
-##### Lua functions as tabline component
+##### Lua functions as wezbar component
 
 ```lua
 local function hello()
   return 'Hello World'
 end
-sections = { tabline_a = { hello } }
+sections = { wezbar_a = { hello } }
 ```
 
 > [!NOTE]
 > Functions receive the `Window` object or `TabInformation` object as the first argument depending on the component group
 
-##### Text string as tabline component
+##### Text string as wezbar component
 
 ```lua
-sections = { tabline_a = { 'Hello World' } }
+sections = { wezbar_a = { 'Hello World' } }
 ```
 
-##### WezTerm Formatitem as tabline component
+##### WezTerm Formatitem as wezbar component
 
 You can find all the available format items [here](https://wezfurlong.org/wezterm/config/lua/wezterm/format.html). The `ResetAttributes` format item has been overwritten to reset all attributes back to the default for that component instead of the WezTerm default.
 
 ```lua
 sections = {
-  tabline_c = {
+  wezbar_c = {
     { Attribute = { Underline = 'Single' } },
     { Foreground = { AnsiColor = 'Fuchsia' } },
     { Background = { Color = 'blue' } },
@@ -347,7 +347,7 @@ sections = {
 > [!TIP]
 > Strings are automatically wrapped in a Text FormatItem when used as a component.
 
-##### Lua expressions as tabline component
+##### Lua expressions as wezbar component
 
 You can use any valid lua expression as a component including:
 
@@ -356,7 +356,7 @@ You can use any valid lua expression as a component including:
 - require statements
 
 ```lua
-sections = { tabline_c = { os.date('%a'), data, require('util').status() } }
+sections = { wezbar_c = { os.date('%a'), data, require('util').status() } }
 ```
 
 `data` is a global variable in this example.
@@ -376,13 +376,13 @@ but you cannot use local options as global.
 Global options used locally overwrites the global, for example:
 
 ```lua
-tabline.setup {
+wezbar.setup {
   options = { fmt = string.lower },
   sections = {
-    tabline_a = {
+    wezbar_a = {
       { 'mode', fmt = function(str) return str:sub(1,1) end }
     },
-    tabline_b = { 'window' }
+    wezbar_b = { 'window' }
   }
 }
 ```
@@ -396,7 +396,7 @@ shown. On the other hand `window` will be formatted with the global formatter
 #### Global options
 
 These are `options` that are used in the options table.
-They set behavior of tabline.
+They set behavior of wezbar.
 
 Values set here are treated as default for other options
 that work in the component level.
@@ -408,7 +408,7 @@ the option value in the component.
 
 ```lua
 options = {
-  theme = 'nord', -- tabline theme
+  theme = 'nord', -- wezbar theme
   section_separators = {
     left = wezterm.nerdfonts.ple_right_half_circle_thick,
     right = wezterm.nerdfonts.ple_left_half_circle_thick,
@@ -431,7 +431,7 @@ and are available for all components.
 
 ```lua
 sections = {
-  tabline_a = {
+  wezbar_a = {
     {
       'mode',
       icons_enabled = true, -- Enables the display of icons alongside the component.
@@ -474,7 +474,7 @@ specify if it should be zero indexed.
 
 ```lua
 sections = {
-  tabline_a = {
+  wezbar_a = {
     {
       'datetime',
       -- options: your own format string ('%Y/%m/%d %H:%M:%S', etc.)
@@ -566,7 +566,7 @@ sections = {
 
 ```lua
 sections = {
-  tabline_a = {
+  wezbar_a = {
     {
       'cpu',
       throttle = 3, -- How often in seconds the component updates, set to 0 to disable throttling
@@ -580,7 +580,7 @@ sections = {
 
 ```lua
 sections = {
-  tabline_a = {
+  wezbar_a = {
     {
       'battery',
       battery_to_icon = {
@@ -602,7 +602,7 @@ sections = {
 
 ```lua
 sections = {
-  tabline_a = {
+  wezbar_a = {
     {
       'domain',
       domain_to_icon = {
@@ -634,7 +634,7 @@ sections = {
 
 ### Extensions
 
-tabline extensions change statusline appearance for other plugins.
+wezbar extensions change statusline appearance for other plugins.
 
 By default no extensions are loaded to improve performance.
 You can load extensions with:
@@ -673,7 +673,7 @@ local my_extension = {
     end
   },
   sections = {
-    tabline_a = { 'mode' }
+    wezbar_a = { 'mode' }
   },
   colors = {
     a = { fg = '#181825', bg = '#f38ba8' },
@@ -682,7 +682,7 @@ local my_extension = {
   }
 }
 
-tabline.setup({ extensions = { my_extension } })
+wezbar.setup({ extensions = { my_extension } })
 ```
 
 You can also pass multiple events to the `show` and `hide` properties.
@@ -696,22 +696,22 @@ events = {
 
 ---
 
-### Refreshing tabline
+### Refreshing wezbar
 
-By default tabline refreshes itself based on the [`status_update_interval`](https://wezfurlong.org/wezterm/config/lua/config/status_update_interval.html). However you can also force
-tabline to refresh at any time by calling `tabline.refresh` function.
-The refresh function needs the Window object to refresh the tabline, and the TabInformation object to refresh the tabs. If passing one of them as nil it won't refresh the respective section.
+By default wezbar refreshes itself based on the [`status_update_interval`](https://wezfurlong.org/wezterm/config/lua/config/status_update_interval.html). However you can also force
+wezbar to refresh at any time by calling `wezbar.refresh` function.
+The refresh function needs the Window object to refresh the wezbar, and the TabInformation object to refresh the tabs. If passing one of them as nil it won't refresh the respective section.
 
 ```lua
-tabline.refresh(window, tab)
+wezbar.refresh(window, tab)
 ```
 
-Avoid calling `tabline.refresh` inside components. Since components are evaluated
+Avoid calling `wezbar.refresh` inside components. Since components are evaluated
 during refresh, calling refresh while refreshing can have undesirable effects.
 
-### Disabling tabline
+### Disabling wezbar
 
-You can also disable tabline completely. By setting the [enable_tab_bar](https://wezfurlong.org/wezterm/config/lua/config/enable_tab_bar.html) option to false in the WezTerm config.
+You can also disable wezbar completely. By setting the [enable_tab_bar](https://wezfurlong.org/wezterm/config/lua/config/enable_tab_bar.html) option to false in the WezTerm config.
 
 ### Inspiration
 
