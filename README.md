@@ -104,7 +104,6 @@ do so with:
 
 ```lua
 wezbar.get_config()
-
 ```
 
 #### WezTerm configuration
@@ -341,7 +340,6 @@ sections = {
     'Hello World', -- { Text = 'Hello World' }
   }
 }
-
 ```
 
 > [!TIP]
