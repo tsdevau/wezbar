@@ -1,23 +1,23 @@
-local wezterm = require('wezterm')
-local config = require('wezbar.config')
+local wezterm = require("wezterm")
+local config = require("wezbar.config")
 
 return {
   {
-    'resurrect',
+    "resurrect",
     events = {
-      show = 'resurrect.fuzzy_loader.fuzzy_load.start',
+      show = "resurrect.fuzzy_loader.fuzzy_load.start",
       hide = {
-        'resurrect.fuzzy_loader.fuzzy_load.finished',
-        'quick_domain.fuzzy_selector.opened',
-        'smart_workspace_switcher.workspace_switcher.start',
+        "resurrect.fuzzy_loader.fuzzy_load.finished",
+        "quick_domain.fuzzy_selector.opened",
+        "smart_workspace_switcher.workspace_switcher.start",
       },
     },
     sections = {
       wezbar_a = {
-        ' ' .. wezterm.nerdfonts.md_sleep_off .. ' Resurrect ',
+        " " .. wezterm.nerdfonts.md_sleep_off .. " Resurrect ",
       },
-      wezbar_b = { 'workspace' },
-      wezbar_c = { 'window' },
+      wezbar_b = { "workspace" },
+      wezbar_c = { "window" },
       tab_active = {},
       tab_inactive = {},
     },
@@ -27,15 +27,15 @@ return {
     },
   },
   {
-    'resurrect.state_manager.periodic_save',
+    "resurrect.state_manager.periodic_save",
     events = {
-      show = 'resurrect.state_manager.periodic_save',
+      show = "resurrect.state_manager.periodic_save",
       delay = 7,
     },
     sections = {
       wezbar_x = {
         { Foreground = { Color = config.theme.colors.brights[4] } },
-        wezterm.nerdfonts.cod_save .. ' saved workspace ',
+        wezterm.nerdfonts.cod_save .. " saved workspace ",
       },
     },
   },

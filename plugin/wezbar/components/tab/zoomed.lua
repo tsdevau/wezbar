@@ -1,4 +1,4 @@
-local wezterm = require('wezterm')
+local wezterm = require("wezterm")
 
 return {
   default_opts = { icon = wezterm.nerdfonts.oct_zoom_in },
@@ -6,9 +6,9 @@ return {
     for _, pane in ipairs(tab.panes) do
       if pane.is_zoomed then
         if opts.icons_enabled then
-          return ''
+          return ""
         end
-        return 'Z'
+        return "Z"
       end
     end
   end,

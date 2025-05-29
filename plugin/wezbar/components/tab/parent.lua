@@ -1,4 +1,4 @@
-local parent = ''
+local parent = ""
 
 return {
   default_opts = { max_length = 10 },
@@ -7,14 +7,14 @@ return {
     if cwd_uri then
       local file_path = cwd_uri.file_path
       -- Replace backslashes with forward slashes for consistency
-      file_path = file_path:gsub('\\', '/')
+      file_path = file_path:gsub("\\", "/")
       -- Remove any leading and trailing slashes
-      file_path = file_path:match('^/*(.-)/*$')
-      parent = file_path:match('([^/]*)/[^/]*$')
+      file_path = file_path:match("^/*(.-)/*$")
+      parent = file_path:match("([^/]*)/[^/]*$")
       if parent and #parent > opts.max_length then
-        parent = parent:sub(1, opts.max_length - 1) .. '…'
+        parent = parent:sub(1, opts.max_length - 1) .. "…"
       end
     end
-    return parent or ''
+    return parent or ""
   end,
 }

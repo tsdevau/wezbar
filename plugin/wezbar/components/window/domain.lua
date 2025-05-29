@@ -1,5 +1,5 @@
-local wezterm = require('wezterm')
-local util = require('wezbar.util')
+local wezterm = require("wezterm")
+local util = require("wezbar.util")
 
 return {
   default_opts = {
@@ -14,9 +14,9 @@ return {
   },
   update = function(window, opts)
     local domain_name = window:active_pane():get_domain_name()
-    local domain_type, new_domain_name = domain_name:match('^([^:]+):?(.*)')
-    domain_type = (domain_type or 'default'):lower()
-    new_domain_name = new_domain_name ~= '' and new_domain_name or domain_name
+    local domain_type, new_domain_name = domain_name:match("^([^:]+):?(.*)")
+    domain_type = (domain_type or "default"):lower()
+    new_domain_name = new_domain_name ~= "" and new_domain_name or domain_name
 
     if opts.icons_enabled and opts.domain_to_icon then
       local icon = opts.domain_to_icon[domain_type] or opts.domain_to_icon.default

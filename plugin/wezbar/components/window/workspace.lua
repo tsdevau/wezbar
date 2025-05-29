@@ -1,4 +1,4 @@
-local wezterm = require('wezterm')
+local wezterm = require("wezterm")
 
 return {
   default_opts = {
@@ -6,7 +6,7 @@ return {
   },
   update = function()
     local workspace = wezterm.mux.get_active_workspace()
-    workspace = string.match(workspace, '[^/\\]+$')
+    workspace = string.match(workspace, "[^/\\]+$")
     return workspace
   end,
 }

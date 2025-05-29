@@ -1,4 +1,4 @@
-local wezterm = require('wezterm')
+local wezterm = require("wezterm")
 
 local M = {}
 
@@ -18,8 +18,8 @@ function M.deep_extend(t1, t2)
   for k, v in pairs(t2) do
     if overwrite[k] then
       t1[k] = v
-    elseif type(v) == 'table' then
-      if type(t1[k] or false) == 'table' then
+    elseif type(v) == "table" then
+      if type(t1[k] or false) == "table" then
         M.deep_extend(t1[k], t2[k])
       else
         t1[k] = v
@@ -34,7 +34,7 @@ end
 function M.deep_copy(orig)
   local orig_type = type(orig)
   local copy
-  if orig_type == 'table' then
+  if orig_type == "table" then
     copy = {}
     for orig_key, orig_value in next, orig, nil do
       copy[M.deep_copy(orig_key)] = M.deep_copy(orig_value)
@@ -53,27 +53,27 @@ function M.insert_elements(dest, src)
 end
 
 local reset_attributes = {
-  { Attribute = { Underline = 'None' } },
-  { Attribute = { Intensity = 'Normal' } },
+  { Attribute = { Underline = "None" } },
+  { Attribute = { Intensity = "Normal" } },
   { Attribute = { Italic = false } },
 }
 
 local function require_component(object, v)
   local component
   if object.tab_id then
-    component = 'wezbar.components.tab.' .. v
+    component = "wezbar.components.tab." .. v
   else
-    component = 'wezbar.components.window.' .. v
+    component = "wezbar.components.window." .. v
   end
   return component
 end
 
 function M.extract_components(components_opts, attributes, object, format)
-  local component_opts = require('wezbar.config').component_opts
+  local component_opts = require("wezbar.config").component_opts
   local components = {}
   for _, v in ipairs(components_opts) do
-    if type(v) == 'string' then
-      if v == 'ResetAttributes' then
+    if type(v) == "string" then
+      if v == "ResetAttributes" then
         M.insert_elements(components, reset_attributes)
         M.insert_elements(components, attributes)
       else
@@ -88,10 +88,10 @@ function M.extract_components(components_opts, attributes, object, format)
             M.insert_elements(components, component)
           end
         else
-          table.insert(components, { Text = v .. '' })
+          table.insert(components, { Text = v .. "" })
         end
       end
-    elseif type(v) == 'table' and type(v[1]) == 'string' then
+    elseif type(v) == "table" and type(v[1]) == "string" then
       local ok, result = pcall(require, require_component(object, v[1]))
       if ok then
         local opts = M.deep_copy(component_opts)
@@ -105,9 +105,9 @@ function M.extract_components(components_opts, attributes, object, format)
           M.insert_elements(components, component)
         end
       end
-    elseif type(v) == 'function' then
-      table.insert(components, { Text = v(object) .. '' })
-    elseif type(v) == 'table' then
+    elseif type(v) == "function" then
+      table.insert(components, { Text = v(object) .. "" })
+    elseif type(v) == "table" then
       table.insert(components, v)
     end
   end
@@ -125,18 +125,18 @@ function M.create_component(name, opts, object, attributes, format)
     name = opts.fmt(name, object)
   end
   if opts.icon and opts.icons_only then
-    name = ''
+    name = ""
   end
 
   local result
   local left_padding_element, right_padding_element
   local left_padding, right_padding
   if opts.padding then
-    if type(opts.padding) == 'table' then
-      left_padding = string.rep(' ', opts.padding.left or 0)
-      right_padding = string.rep(' ', opts.padding.right or 0)
+    if type(opts.padding) == "table" then
+      left_padding = string.rep(" ", opts.padding.left or 0)
+      right_padding = string.rep(" ", opts.padding.right or 0)
     else
-      left_padding = string.rep(' ', opts.padding)
+      left_padding = string.rep(" ", opts.padding)
       right_padding = left_padding
     end
     left_padding_element = { Text = left_padding }
@@ -145,8 +145,8 @@ function M.create_component(name, opts, object, attributes, format)
   if opts.icons_enabled and opts.icon then
     local icon_name = {}
     table.insert(icon_name, left_padding_element)
-    if type(opts.icon) == 'table' then
-      if opts.icon.align == 'right' then
+    if type(opts.icon) == "table" then
+      if opts.icon.align == "right" then
         table.insert(icon_name, { Text = name })
         if opts.icon.color then
           if opts.icon.color.fg then
@@ -156,7 +156,7 @@ function M.create_component(name, opts, object, attributes, format)
             table.insert(icon_name, { Background = { Color = opts.icon.color.bg } })
           end
         end
-        table.insert(icon_name, { Text = ' ' .. opts.icon[1] })
+        table.insert(icon_name, { Text = " " .. opts.icon[1] })
         M.insert_elements(icon_name, reset_attributes)
         M.insert_elements(icon_name, attributes)
       else
@@ -168,13 +168,13 @@ function M.create_component(name, opts, object, attributes, format)
             table.insert(icon_name, { Background = { Color = opts.icon.color.bg } })
           end
         end
-        table.insert(icon_name, { Text = opts.icon[1] .. ' ' })
+        table.insert(icon_name, { Text = opts.icon[1] .. " " })
         M.insert_elements(icon_name, reset_attributes)
         M.insert_elements(icon_name, attributes)
         table.insert(icon_name, { Text = name })
       end
     else
-      table.insert(icon_name, { Text = opts.icon .. ' ' })
+      table.insert(icon_name, { Text = opts.icon .. " " })
       table.insert(icon_name, { Text = name })
     end
     table.insert(icon_name, right_padding_element)
@@ -189,7 +189,7 @@ function M.create_component(name, opts, object, attributes, format)
 end
 
 function M.overwrite_icon(opts, new_icon)
-  if type(new_icon) == 'table' and type(opts.icon) == 'table' then
+  if type(new_icon) == "table" and type(opts.icon) == "table" then
     opts.icon[1] = M.deep_copy(new_icon[1])
   else
     opts.icon = M.deep_copy(new_icon)
