@@ -5,7 +5,7 @@ local M = {}
 
 local default_opts = {
 	options = {
-		theme = "Catppuccin Mocha",
+		theme = wezterm.config.theme or "Catppuccin Mocha",
 		tabs_enabled = true,
 		section_separators = {
 			left = wezterm.nerdfonts.pl_left_hard_divider,
@@ -41,14 +41,13 @@ local default_opts = {
 local default_component_opts = {
 	icons_enabled = true,
 	icons_only = false,
-	padding = 1,
+	padding = 3,
 }
 
 local function get_colors(theme)
 	local colors = type(theme) == "string" and wezterm.color.get_builtin_schemes()[theme] or theme
 	local surface = colors.cursor and colors.cursor.bg or colors.ansi[1]
-	local background = colors.tab_bar and colors.tab_bar.inactive_tab and colors.tab_bar.inactive_tab.bg_color
-		or colors.background
+	local background = colors.tab_bar and colors.tab_bar.background or colors.background
 
 	if type(theme) == "string" then
 		if string.find(theme, "Catppuccin") then
@@ -58,7 +57,7 @@ local function get_colors(theme)
 
 	return {
 		normal_mode = {
-			a = { fg = background, bg = colors.ansi[2] },
+			a = { fg = background, bg = colors.ansi[5] },
 			b = { fg = colors.ansi[5], bg = surface },
 			c = { fg = colors.foreground, bg = background },
 		},
