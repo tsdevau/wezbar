@@ -1,4 +1,4 @@
-# tabline.wez
+# Wezterm Custom Tab Bar (forked from tabline.wez)
 
 A versatile and easy to use tab-bar written in Lua.
 
