@@ -45,36 +45,41 @@ local default_component_opts = {
 }
 
 local function get_colors(theme)
-	local colors = type(theme) == "string" and wezterm.color.get_builtin_schemes()[theme] or theme
-	local surface = colors.cursor and colors.cursor.bg or colors.ansi[1]
-	local background = colors.tab_bar and colors.tab_bar.background or colors.background
-
-	if type(theme) == "string" then
-		if string.find(theme, "Catppuccin") then
-			surface = colors.tab_bar.inactive_tab_edge
-		end
-	end
+	local colors = type(theme) ~= "string" and theme or wezterm.color.get_builtin_schemes()[theme]
+	local surface = colors.tab_bar and colors.tab_bar.inactive_tab_edge or colors.background
 
 	return {
 		normal_mode = {
-			a = { fg = background, bg = colors.ansi[5] },
+			a = { fg = colors.background, bg = colors.ansi[5] },
 			b = { fg = colors.ansi[5], bg = surface },
 			c = { fg = colors.ansi[5], bg = surface },
+			x = { fg = colors.background, bg = surface },
+			y = { fg = colors.ansi[5], bg = surface },
+			z = { fg = colors.ansi[5], bg = surface },
 		},
 		leader_mode = {
-			a = { fg = background, bg = colors.ansi[2] },
+			a = { fg = colors.background, bg = colors.ansi[2] },
 			b = { fg = colors.ansi[5], bg = surface },
 			c = { fg = colors.ansi[5], bg = surface },
+			x = { fg = colors.background, bg = surface },
+			y = { fg = colors.ansi[5], bg = surface },
+			z = { fg = colors.ansi[5], bg = surface },
 		},
 		copy_mode = {
-			a = { fg = background, bg = colors.ansi[6] },
+			a = { fg = colors.background, bg = colors.ansi[6] },
 			b = { fg = colors.ansi[5], bg = surface },
 			c = { fg = colors.ansi[5], bg = surface },
+			x = { fg = colors.background, bg = surface },
+			y = { fg = colors.ansi[5], bg = surface },
+			z = { fg = colors.ansi[5], bg = surface },
 		},
 		search_mode = {
-			a = { fg = background, bg = colors.ansi[4] },
+			a = { fg = colors.background, bg = colors.ansi[4] },
 			b = { fg = colors.ansi[5], bg = surface },
 			c = { fg = colors.ansi[5], bg = surface },
+			x = { fg = colors.background, bg = surface },
+			y = { fg = colors.ansi[5], bg = surface },
+			z = { fg = colors.ansi[5], bg = surface },
 		},
 		tab = {
 			active = { fg = colors.tab_bar.active_tab.fg_color, bg = colors.tab_bar.active_tab.bg_color },
