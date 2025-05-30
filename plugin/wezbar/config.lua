@@ -41,7 +41,7 @@ local default_opts = {
 local default_component_opts = {
 	icons_enabled = true,
 	icons_only = false,
-	padding = 3,
+	padding = 2,
 }
 
 local function get_colors(theme)
@@ -53,32 +53,32 @@ local function get_colors(theme)
 			a = { fg = colors.background, bg = colors.ansi[5] },
 			b = { fg = colors.ansi[5], bg = surface },
 			c = { fg = colors.ansi[5], bg = surface },
-			x = { fg = colors.ansi[17], bg = surface },
-			y = { fg = colors.ansi[16], bg = surface },
+			x = { fg = colors.ansi[18], bg = surface },
+			y = { fg = colors.ansi[17], bg = surface },
 			z = { fg = colors.ansi[5], bg = surface },
 		},
 		leader_mode = {
 			a = { fg = colors.background, bg = colors.ansi[2] },
 			b = { fg = colors.ansi[5], bg = surface },
 			c = { fg = colors.ansi[5], bg = surface },
-			x = { fg = colors.ansi[17], bg = surface },
-			y = { fg = colors.ansi[16], bg = surface },
+			x = { fg = colors.ansi[18], bg = surface },
+			y = { fg = colors.ansi[17], bg = surface },
 			z = { fg = colors.ansi[5], bg = surface },
 		},
 		copy_mode = {
 			a = { fg = colors.background, bg = colors.ansi[6] },
 			b = { fg = colors.ansi[5], bg = surface },
 			c = { fg = colors.ansi[5], bg = surface },
-			x = { fg = colors.ansi[16], bg = surface },
-			y = { fg = colors.ansi[5], bg = surface },
+			x = { fg = colors.ansi[18], bg = surface },
+			y = { fg = colors.ansi[17], bg = surface },
 			z = { fg = colors.ansi[5], bg = surface },
 		},
 		search_mode = {
 			a = { fg = colors.background, bg = colors.ansi[4] },
 			b = { fg = colors.ansi[5], bg = surface },
 			c = { fg = colors.ansi[5], bg = surface },
-			x = { fg = colors.ansi[17], bg = surface },
-			y = { fg = colors.ansi[16], bg = surface },
+			x = { fg = colors.ansi[18], bg = surface },
+			y = { fg = colors.ansi[17], bg = surface },
 			z = { fg = colors.ansi[5], bg = surface },
 		},
 		tab = {
