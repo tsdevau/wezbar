@@ -29,73 +29,61 @@ local function create_attributes(window)
 		end
 	end
 	attributes_a = {
-		"ResetAttributes",
 		{ Foreground = { Color = colors.a.fg } },
 		{ Background = { Color = colors.a.bg } },
 		{ Attribute = { Intensity = "Bold" } },
 	}
 	attributes_b = {
-		"ResetAttributes",
 		{ Foreground = { Color = colors.b.fg } },
 		{ Background = { Color = colors.b.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	attributes_c = {
-		"ResetAttributes",
 		{ Foreground = { Color = colors.c.fg } },
 		{ Background = { Color = colors.c.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	attributes_x = {
-		"ResetAttributes",
 		{ Foreground = { Color = colors.x and colors.x.fg or colors.c.fg } },
 		{ Background = { Color = colors.x and colors.x.bg or colors.c.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	attributes_y = {
-		"ResetAttributes",
 		{ Foreground = { Color = colors.y and colors.y.fg or colors.b.fg } },
 		{ Background = { Color = colors.y and colors.y.bg or colors.b.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	attributes_z = {
-		"ResetAttributes",
 		{ Foreground = { Color = colors.z and colors.z.fg or colors.a.fg } },
 		{ Background = { Color = colors.z and colors.z.bg or colors.a.bg } },
-		{ Attribute = { Intensity = "Bold" } },
+		{ Attribute = { Intensity = "Normal" } },
 	}
 	section_separator_attributes_a = {
-		"ResetAttributes",
 		{ Foreground = { Color = colors.a.bg } },
 		{ Background = { Color = colors.b.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	section_separator_attributes_b = {
-		"ResetAttributes",
 		{ Foreground = { Color = colors.b.bg } },
 		{ Background = { Color = colors.c.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	section_separator_attributes_c = {
-		"ResetAttributes",
 		{ Foreground = { Color = colors.a.bg } },
 		{ Background = { Color = colors.c.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	section_separator_attributes_x = {
-		"ResetAttributes",
 		{ Foreground = { Color = colors.z and colors.z.bg or colors.a.bg } },
 		{ Background = { Color = colors.x and colors.x.bg or colors.c.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	section_separator_attributes_y = {
-		"ResetAttributes",
 		{ Foreground = { Color = colors.y and colors.y.bg or colors.b.bg } },
 		{ Background = { Color = colors.x and colors.x.bg or colors.c.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	section_separator_attributes_z = {
-		"ResetAttributes",
 		{ Foreground = { Color = colors.z and colors.z.bg or colors.a.bg } },
 		{ Background = { Color = colors.y and colors.y.bg or colors.b.bg } },
 		{ Attribute = { Intensity = "Normal" } },
