@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 
-local last_update_time = 0.0
+local last_update_time = 0
 local last_result = ""
 
 return {
@@ -10,7 +10,7 @@ return {
 		use_pwsh = false,
 	},
 	update = function(_, opts)
-		local current_time = tonumber(wezterm.time.now():format("%s")) or last_update_time
+		local current_time = tonumber(wezterm.strftime("%s"))
 		if current_time - last_update_time < opts.throttle then
 			return last_result
 		end
@@ -69,9 +69,9 @@ return {
 			end
 		end
 
-		cpu = string.format("%s%%", cpu)
+		cpu = string.format("%.2f%%", cpu)
 
-		last_update_time = current_time
+		last_update_time = tonumber(wezterm.strftime("%s"))
 		last_result = cpu
 
 		return cpu
