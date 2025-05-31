@@ -21,12 +21,7 @@ local default_opts = {
 		},
 	},
 	sections = {
-		wezbar_a = {
-			"mode",
-			fmt = function(str)
-				return wezterm.format(str, { Attribute = { Intensity = "Bold" } })
-			end,
-		},
+		wezbar_a = { "mode" },
 		wezbar_b = { "workspace" },
 		wezbar_c = { "hostname" },
 		tab_active = {
