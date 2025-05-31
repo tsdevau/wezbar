@@ -29,61 +29,73 @@ local function create_attributes(window)
 		end
 	end
 	attributes_a = {
+		"ResetAttributes",
 		{ Foreground = { Color = colors.a.fg } },
 		{ Background = { Color = colors.a.bg } },
 		{ Attribute = { Intensity = "Bold" } },
 	}
 	attributes_b = {
+		"ResetAttributes",
 		{ Foreground = { Color = colors.b.fg } },
 		{ Background = { Color = colors.b.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	attributes_c = {
+		"ResetAttributes",
 		{ Foreground = { Color = colors.c.fg } },
 		{ Background = { Color = colors.c.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	attributes_x = {
+		"ResetAttributes",
 		{ Foreground = { Color = colors.x and colors.x.fg or colors.c.fg } },
 		{ Background = { Color = colors.x and colors.x.bg or colors.c.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	attributes_y = {
+		"ResetAttributes",
 		{ Foreground = { Color = colors.y and colors.y.fg or colors.b.fg } },
 		{ Background = { Color = colors.y and colors.y.bg or colors.b.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	attributes_z = {
+		"ResetAttributes",
 		{ Foreground = { Color = colors.z and colors.z.fg or colors.a.fg } },
 		{ Background = { Color = colors.z and colors.z.bg or colors.a.bg } },
 		{ Attribute = { Intensity = "Bold" } },
 	}
 	section_separator_attributes_a = {
+		"ResetAttributes",
 		{ Foreground = { Color = colors.a.bg } },
 		{ Background = { Color = colors.b.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	section_separator_attributes_b = {
+		"ResetAttributes",
 		{ Foreground = { Color = colors.b.bg } },
 		{ Background = { Color = colors.c.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	section_separator_attributes_c = {
+		"ResetAttributes",
 		{ Foreground = { Color = colors.a.bg } },
 		{ Background = { Color = colors.c.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	section_separator_attributes_x = {
+		"ResetAttributes",
 		{ Foreground = { Color = colors.z and colors.z.bg or colors.a.bg } },
 		{ Background = { Color = colors.x and colors.x.bg or colors.c.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	section_separator_attributes_y = {
+		"ResetAttributes",
 		{ Foreground = { Color = colors.y and colors.y.bg or colors.b.bg } },
 		{ Background = { Color = colors.x and colors.x.bg or colors.c.bg } },
 		{ Attribute = { Intensity = "Normal" } },
 	}
 	section_separator_attributes_z = {
+		"ResetAttributes",
 		{ Foreground = { Color = colors.z and colors.z.bg or colors.a.bg } },
 		{ Background = { Color = colors.y and colors.y.bg or colors.b.bg } },
 		{ Attribute = { Intensity = "Normal" } },
@@ -109,46 +121,15 @@ local function create_sections(window)
 			sections = util.deep_extend(util.deep_copy(sections), ext.sections)
 		end
 	end
-	wezbar_a =
-		insert_component_separators(util.extract_components(sections.wezbar_a, attributes_a, window, true), false)
-	wezbar_b =
-		insert_component_separators(util.extract_components(sections.wezbar_b, attributes_b, window, true), false)
-	wezbar_c =
-		insert_component_separators(util.extract_components(sections.wezbar_c, attributes_c, window, true), false)
+	wezbar_a = insert_component_separators(util.extract_components(sections.wezbar_a, attributes_a, window, true), true)
+	wezbar_b = insert_component_separators(util.extract_components(sections.wezbar_b, attributes_b, window, true), true)
+	wezbar_c = insert_component_separators(util.extract_components(sections.wezbar_c, attributes_c, window, true), true)
 	wezbar_x =
 		insert_component_separators(util.extract_components(sections.wezbar_x, attributes_x, window, true), false)
 	wezbar_y =
 		insert_component_separators(util.extract_components(sections.wezbar_y, attributes_y, window, true), false)
 	wezbar_z =
 		insert_component_separators(util.extract_components(sections.wezbar_z, attributes_z, window, true), false)
-end
-
-local function right_section()
-	local result = {}
-	if #wezbar_x > 0 then
-		util.insert_elements(result, attributes_x)
-		util.insert_elements(result, wezbar_x)
-	end
-	if #wezbar_y > 0 then
-		util.insert_elements(result, section_separator_attributes_y)
-		table.insert(result, right_section_separator)
-	end
-	if #wezbar_y > 0 then
-		util.insert_elements(result, attributes_y)
-		util.insert_elements(result, wezbar_y)
-	end
-	if #wezbar_z > 0 and #wezbar_y > 0 then
-		util.insert_elements(result, section_separator_attributes_z)
-		table.insert(result, right_section_separator)
-	elseif #wezbar_z > 0 then
-		util.insert_elements(result, section_separator_attributes_x)
-		table.insert(result, right_section_separator)
-	end
-	if #wezbar_z > 0 then
-		util.insert_elements(result, attributes_z)
-		util.insert_elements(result, wezbar_z)
-	end
-	return result
 end
 
 local function left_section()
@@ -175,6 +156,34 @@ local function left_section()
 	if #wezbar_c > 0 then
 		util.insert_elements(result, attributes_c)
 		util.insert_elements(result, wezbar_c)
+	end
+	return result
+end
+
+local function right_section()
+	local result = {}
+	if #wezbar_x > 0 then
+		util.insert_elements(result, attributes_x)
+		util.insert_elements(result, wezbar_x)
+	end
+	if #wezbar_y > 0 then
+		util.insert_elements(result, section_separator_attributes_y)
+		table.insert(result, right_section_separator)
+	end
+	if #wezbar_y > 0 then
+		util.insert_elements(result, attributes_y)
+		util.insert_elements(result, wezbar_y)
+	end
+	if #wezbar_z > 0 and #wezbar_y > 0 then
+		util.insert_elements(result, section_separator_attributes_z)
+		table.insert(result, right_section_separator)
+	elseif #wezbar_z > 0 then
+		util.insert_elements(result, section_separator_attributes_x)
+		table.insert(result, right_section_separator)
+	end
+	if #wezbar_z > 0 then
+		util.insert_elements(result, attributes_z)
+		util.insert_elements(result, wezbar_z)
 	end
 	return result
 end
