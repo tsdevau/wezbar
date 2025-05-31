@@ -1,18 +1,9 @@
 local M = {}
-local wezterm = require("wezterm")
-
-local function fmt(str)
-	if type(str) ~= "string" then
-		return str
-	end
-	str = wezterm.format({ Attribute = { Intensity = "Bold" } }, { Text = str })
-	return str
-end
 
 function M.update(window)
 	local mode = M.get(window):gsub("_mode", "")
 	mode = mode:upper()
-	return fmt(mode)
+	return mode
 end
 
 function M.get(window)
